@@ -23,7 +23,7 @@
   "dependencies": {
     "babel-cli": "^6.8.0",
     "enzyme": "^2.3.0",
-    "eslint": "^2.9.0",
+    "eslint": "^3.0.0",
     "eslint-config-standard": "^5.3.1",
     "eslint-config-standard-react": "^2.4.0",
     "rollup": "^0.33.0",
