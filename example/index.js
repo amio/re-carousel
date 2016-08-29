@@ -1,4 +1,4 @@
-import { Component } from 'react'
+import { React, Component } from 'react'
 import { render } from 'react-dom'
 
 window.requireCommonjs(['carousel.js', 'indicator-dots.js'], function (Carousel, Dots) {
@@ -46,5 +46,5 @@ window.requireCommonjs(['carousel.js', 'indicator-dots.js'], function (Carousel,
     }
   }
 
-  render(<App/>, document.getElementById('app'))
+  render(<App />, document.getElementById('app'))
 })

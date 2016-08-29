@@ -15,7 +15,7 @@ function IndicatorDots (props) {
       opacity: props.index === i ? '1' : '0.3',
       transitionDuration: '300ms'
     }
-    dots.push(<span key={i} style={dotStyle}></span>)
+    dots.push(<span key={i} style={dotStyle} />)
   }
   return <div style={styles.wrapper}>{dots}</div>
 }
