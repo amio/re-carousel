@@ -82,15 +82,15 @@ class Carousel extends React.Component {
   }
 
   onClickMove (e) {
-    var _this2 = this;
-      var direction = { x: 'left', y: 'up' }[_this2.props.axis];
+    var _this2 = this
+      var direction = { x: 'left', y: 'up' }[_this2.props.axis]
       // prepare frames
-      _this2.updateFrameSize();
-      _this2.moveFramesBy(0, 0);
-      _this2.updateFrameSize();
+      _this2.updateFrameSize()
+      _this2.moveFramesBy(0, 0)
+      _this2.updateFrameSize()
       // make the move
-      _this2.moveFramesTowards(direction);
-      _this2.readyAutoSlide();
+      _this2.moveFramesTowards(direction)
+      _this2.readyAutoSlide()
   }
 
   onTouchMove (e) {

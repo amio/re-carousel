@@ -3,3 +3,5 @@
 node_modules
 gh-pages
 dist
+carousel.js
+indicator-dots.js
