@@ -34,7 +34,7 @@
     "eslint-plugin-standard": "^2.0.0",
     "gh-pages": "^0.11.0",
     "react-addons-test-utils": "15.x",
-    "rollup": "^0.35.0",
+    "rollup": "^0.36.0",
     "watch": "^0.19.2"
   },
   "ava": {
