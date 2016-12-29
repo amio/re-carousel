@@ -31,7 +31,7 @@
     "react": "15.x",
     "react-addons-test-utils": "15.x",
     "react-dom": "15.x",
-    "rollup": "^0.38.0",
+    "rollup": "^0.39.0",
     "standard": "^8.4.0",
     "watch": "^1.0.0"
   },
