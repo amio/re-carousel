@@ -37,8 +37,8 @@ class Carousel extends React.Component {
   updateFrameSize () {
     const { width, height } = getComputedStyle(this.refs.wrapper)
     this.setState({
-      frameWidth: parseInt(width.split('px')[0], 10),
-      frameHeight: parseInt(height.split('px')[0], 10)
+      frameWidth: parseFloat(width.split('px')[0]),
+      frameHeight: parseFloat(height.split('px')[0])
     })
   }
 
