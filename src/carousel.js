@@ -7,6 +7,7 @@ class Carousel extends React.Component {
     this.state.current = 0 // current frame index
 
     this.onTouchStart = this.onTouchStart.bind(this)
+    this.onClickMove = this.onClickMove.bind(this)
     this.onTouchMove = this.onTouchMove.bind(this)
     this.onTouchEnd = this.onTouchEnd.bind(this)
   }
@@ -82,6 +83,18 @@ class Carousel extends React.Component {
     this.refs.wrapper.addEventListener('mousemove', this.onTouchMove)
     this.refs.wrapper.addEventListener('touchend', this.onTouchEnd, true)
     this.refs.wrapper.addEventListener('mouseup', this.onTouchEnd, true)
+  }
+
+  onClickMove (e) {
+    var _this2 = this;
+      var direction = { x: 'left', y: 'up' }[_this2.props.axis];
+      // prepare frames
+      _this2.updateFrameSize();
+      _this2.moveFramesBy(0, 0);
+      _this2.updateFrameSize();
+      // make the move
+      _this2.moveFramesTowards(direction);
+      _this2.readyAutoSlide();
   }
 
   onTouchMove (e) {
@@ -218,6 +231,7 @@ class Carousel extends React.Component {
     const Indicator = this.props.indicator
     return (
       <div ref='wrapper' style={wrapperStyle}
+        onClick={this.onClickMove}
         onTouchStart={this.onTouchStart}
         onMouseDown={this.onTouchStart}
         >
