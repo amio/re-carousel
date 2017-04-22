@@ -1,5 +1,7 @@
 # re-carousel [![npm](https://img.shields.io/npm/v/re-carousel.svg?style=flat-square)](https://www.npmjs.com/package/re-carousel)
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/amio/re-carousel.svg)](https://greenkeeper.io/)
+
 React carousel component, simplified. 2KB gzipped, zero dependency.
 
 demo: https://amio.github.io/re-carousel/
