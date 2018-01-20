@@ -28,7 +28,7 @@
     "react-scripts": "1.0.17",
     "rollup": "^0.54.0",
     "rollup-plugin-buble": "^0.18.0",
-    "rollup-plugin-uglify": "^2.0.0"
+    "rollup-plugin-uglify": "^3.0.0"
   },
   "files": [
     "dist/carousel.js",
