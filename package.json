@@ -27,7 +27,7 @@
     "react-dom": "^16.2.0",
     "react-scripts": "1.1.0",
     "rollup": "^0.55.2",
-    "rollup-plugin-buble": "^0.18.0",
+    "rollup-plugin-buble": "^0.19.0",
     "rollup-plugin-uglify": "^3.0.0"
   },
   "files": [
