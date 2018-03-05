@@ -106,9 +106,9 @@ class Carousel extends React.Component {
 
     // cleanup
     this.refs.wrapper.removeEventListener('touchmove', this.onTouchMove)
-    this.refs.wrapper.removeEventListener('mousemove', this.onTouchMove)
+    //this.refs.wrapper.removeEventListener('mousemove', this.onTouchMove)
     this.refs.wrapper.removeEventListener('touchend', this.onTouchEnd, true)
-    this.refs.wrapper.removeEventListener('mouseup', this.onTouchEnd, true)
+    //this.refs.wrapper.removeEventListener('mouseup', this.onTouchEnd, true)
 
     setTimeout(() => this.prepareAutoSlide(), this.props.duration)
   }
@@ -368,7 +368,8 @@ function translateXY (el, x, y, duration = 0) {
   el.style.transitionDuration = duration + 'ms'
   el.style.webkitTransitionDuration = duration + 'ms'
 
-  el.style.transfrom = `translate(${x}px, ${y}px)`
+  el.style.transform = `translate(${x}px, ${y}px)`
+  el.style.msTransform = `translate(${x}px, ${y}px)`  
   el.style.webkitTransform = `translate(${x}px, ${y}px) translateZ(0)`
 }
 
