@@ -1,7 +1,7 @@
 {
   "name": "re-carousel",
   "description": "Minimal carousel component for React",
-  "version": "2.0.7",
+  "version": "2.0.6",
   "main": "dist/carousel.js",
   "dependencies": {
     "prop-types": "^15.5.10"
