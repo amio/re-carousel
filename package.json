@@ -12,6 +12,7 @@
     "react-dom": "^15 || ^16"
   },
   "devDependencies": {
+    "cross-env": "^5.1.3",
     "gh-pages": "^1.0.0",
     "react": "^16",
     "react-dom": "^16",
@@ -22,7 +23,7 @@
   },
   "scripts": {
     "prepack": "npm run build",
-    "build": "NODE_ENV=production rollup -c",
+    "build": "cross-env NODE_ENV=production rollup -c",
     "start": "react-scripts start",
     "build-pages": "react-scripts build",
     "test:watch": "react-scripts test --env=jsdom",
