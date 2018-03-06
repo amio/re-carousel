@@ -1,9 +1,8 @@
 {
   "name": "re-carousel",
   "description": "Minimal carousel component for React",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "main": "dist/carousel.js",
-  "module": "src/carousel.js",
   "dependencies": {
     "prop-types": "^15.5.10"
   },
@@ -23,7 +22,7 @@
   },
   "scripts": {
     "prepack": "npm run build",
-    "build": "cross-env NODE_ENV=production rollup -c",
+    "build": "cross-env NODE_ENV=production && rollup -c",
     "start": "react-scripts start",
     "build-pages": "react-scripts build",
     "test:watch": "react-scripts test --env=jsdom",
