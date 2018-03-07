@@ -51,6 +51,11 @@ class Carousel extends React.Component {
     this.mounted = false
     this.clearAutoTimeout()
   }
+  
+  componentWillReceiveProps(nextProps) {
+    const frames = [].concat(nextProps.frames || nextProps.children || [])
+    this.setState({ frames })
+  }
 
   onTouchStart (e) {
     if (this.state.total < 2) return
