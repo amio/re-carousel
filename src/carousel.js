@@ -333,6 +333,7 @@ class Carousel extends React.Component {
         ref='wrapper'
         style={objectAssign(styles.wrapper, this.props.style)}
         onTouchStart={this.onTouchStart}
+        className={this.props.className}
         onMouseDown={this.onTouchStart} >
         {
           frames.map((frame, i) => {
