@@ -39,11 +39,7 @@ class Carousel extends React.Component {
   componentDidMount () {
     this.mounted = true
     this.prepareAutoSlide()
-
-    // Hide all frames
-    for (let i = 1; i < this.state.frames.length; i++) {
-      this.refs['f' + i].style.opacity = 0
-    }
+    this.hideFrames()
 
     this.refs.wrapper.addEventListener('touchmove', this.onTouchMove, {capture: true})
     this.refs.wrapper.addEventListener('touchend', this.onTouchEnd, {capture: true})
@@ -59,7 +55,24 @@ class Carousel extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     const frames = [].concat(nextProps.frames || nextProps.children || [])
-    this.setState({ frames })
+    const newState = { frames }
+    let cb = null
+
+    if (this.state.frames.length !== frames.length && frames.length) {
+      newState.current = 0
+      cb = () => {
+        this.hideFrames()
+        translateXY( this.refs['f0'], 0, 0, 0 )
+      }
+    }
+
+    this.setState(newState, cb);
+  }
+
+  hideFrames = () => {
+    for (let i = 1; i < this.state.frames.length; i++) {
+      this.refs['f' + i].style.opacity = 0
+    }
   }
 
   onTouchStart (e) {
