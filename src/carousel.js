@@ -53,20 +53,22 @@ class Carousel extends React.Component {
     this.refs.wrapper.removeEventListener('touchend', this.onTouchEnd, {capture: true})
   }
 
-  componentWillReceiveProps(nextProps) {
-    const frames = [].concat(nextProps.frames || nextProps.children || [])
-    const newState = { frames }
-    let cb = null
-
-    if (this.state.frames.length !== frames.length && frames.length) {
-      newState.current = 0
-      cb = () => {
-        this.hideFrames()
-        translateXY( this.refs['f0'], 0, 0, 0 )
-      }
+  componentDidUpdate(_, prevState) {
+    if (this.state.frames.length && this.state.frames.length !== prevState.frames.length) {
+      // reset to default state
+      this.hideFrames()
+      translateXY(this.refs['f0'], 0, 0, 0)
     }
+  }
 
-    this.setState(newState, cb);
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const frames = [].concat(nextProps.frames || nextProps.children || [])
+    const nextState = { frames } 
+    if (frames.length && frames.length !== prevState.frames.length) {
+      nextState.current = 0
+    }
+   
+    return nextState
   }
 
   hideFrames = () => {
