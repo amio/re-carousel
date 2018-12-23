@@ -57,7 +57,7 @@ class Carousel extends React.Component {
     if (this.state.frames.length && this.state.frames.length !== prevState.frames.length) {
       // reset to default state
       this.hideFrames()
-      translateXY(this.refs['f0'], 0, 0, 0)
+      this.prepareAutoSlide()
     }
   }
 
@@ -67,7 +67,6 @@ class Carousel extends React.Component {
     if (frames.length && frames.length !== prevState.frames.length) {
       nextState.current = 0
     }
-   
     return nextState
   }
 
