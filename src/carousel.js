@@ -24,7 +24,7 @@ class Carousel extends React.Component {
     }
 
     this.mounted = false
-    this.debounceTimout = false
+    this.debounceTimeoutId = null
     this.onTouchStart = this.onTouchStart.bind(this)
     this.onTouchMove = this.onTouchMove.bind(this)
     this.onTouchEnd = this.onTouchEnd.bind(this)
@@ -40,7 +40,6 @@ class Carousel extends React.Component {
 
   componentDidMount () {
     this.mounted = true
-    this.debounceTimout = false
     this.prepareAutoSlide()
     this.hideFrames()
 
@@ -82,11 +81,12 @@ class Carousel extends React.Component {
   }
 
   onResize() {
-    clearTimeout(this.debounceTimout);
-    this.debounceTimout = setTimeout(() => {
-      this.hideFrames();
-      this.prepareAutoSlide();
-    }, 50); // Wait 50ms after resize stops before calling resize.
+    clearTimeout(this.debounceTimeoutId);
+    this.debounceTimeoutId = setTimeout(() => {
+      this.updateFrameSize(() => {
+        this.prepareSiblingFrames();
+      });
+    }, 25);
   }
 
   onTouchStart (e) {
