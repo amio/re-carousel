@@ -51,6 +51,7 @@ class Carousel extends React.Component {
   componentWillUnmount () {
     this.mounted = false
     this.clearAutoTimeout()
+    clearTimeout(this.debounceTimeoutId)
 
     this.refs.wrapper.removeEventListener('touchmove', this.onTouchMove, {capture: true})
     this.refs.wrapper.removeEventListener('touchend', this.onTouchEnd, {capture: true})
