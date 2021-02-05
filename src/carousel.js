@@ -23,6 +23,11 @@ class Carousel extends React.Component {
       current: 0
     }
 
+    this.wrapperRef = React.createRef()
+    this.frameRefs = []
+    this.setFrameRef = (ref) => {
+      this.frameRefs.push(ref)
+    }
     this.mounted = false
     this.debounceTimeoutId = null
     this.onTouchStart = this.onTouchStart.bind(this)
@@ -43,8 +48,8 @@ class Carousel extends React.Component {
     this.prepareAutoSlide()
     this.hideFrames()
 
-    this.refs.wrapper.addEventListener('touchmove', this.onTouchMove, {capture: true})
-    this.refs.wrapper.addEventListener('touchend', this.onTouchEnd, {capture: true})
+    this.wrapperRef.current.addEventListener('touchmove', this.onTouchMove, {capture: true})
+    this.wrapperRef.current.addEventListener('touchend', this.onTouchEnd, {capture: true})
     window.addEventListener('resize', this.onResize);
   }
 
@@ -53,8 +58,8 @@ class Carousel extends React.Component {
     this.clearAutoTimeout()
     clearTimeout(this.debounceTimeoutId)
 
-    this.refs.wrapper.removeEventListener('touchmove', this.onTouchMove, {capture: true})
-    this.refs.wrapper.removeEventListener('touchend', this.onTouchEnd, {capture: true})
+    this.wrapperRef.current.removeEventListener('touchmove', this.onTouchMove, {capture: true})
+    this.wrapperRef.current.removeEventListener('touchend', this.onTouchEnd, {capture: true})
     window.removeEventListener('resize', this.onResize);
   }
 
@@ -77,7 +82,7 @@ class Carousel extends React.Component {
 
   hideFrames () {
     for (let i = 1; i < this.state.frames.length; i++) {
-      this.refs['f' + i].style.opacity = 0
+      this.frameRefs[i].style.opacity = 0
     }
   }
 
@@ -106,9 +111,9 @@ class Carousel extends React.Component {
       deltaY: 0
     })
 
-    this.refs.wrapper.addEventListener('mousemove', this.onTouchMove, {capture: true})
-    this.refs.wrapper.addEventListener('mouseup', this.onTouchEnd, {capture: true})
-    this.refs.wrapper.addEventListener('mouseleave', this.onTouchEnd, {capture: true})
+    this.wrapperRef.current.addEventListener('mousemove', this.onTouchMove, {capture: true})
+    this.wrapperRef.current.addEventListener('mouseup', this.onTouchEnd, {capture: true})
+    this.wrapperRef.current.addEventListener('mouseleave', this.onTouchEnd, {capture: true})
   }
 
   onTouchMove (e) {
@@ -152,9 +157,9 @@ class Carousel extends React.Component {
     direction && this.transitFramesTowards(direction)
 
     // cleanup
-    this.refs.wrapper.removeEventListener('mousemove', this.onTouchMove, {capture: true})
-    this.refs.wrapper.removeEventListener('mouseup', this.onTouchEnd, {capture: true})
-    this.refs.wrapper.removeEventListener('mouseleave', this.onTouchEnd, {capture: true})
+    this.wrapperRef.current.removeEventListener('mousemove', this.onTouchMove, {capture: true})
+    this.wrapperRef.current.removeEventListener('mouseup', this.onTouchEnd, {capture: true})
+    this.wrapperRef.current.removeEventListener('mouseleave', this.onTouchEnd, {capture: true})
 
     setTimeout(() => this.prepareAutoSlide(), this.props.duration)
   }
@@ -268,7 +273,7 @@ class Carousel extends React.Component {
   }
 
   updateFrameSize (cb) {
-    const { width, height } = window.getComputedStyle(this.refs.wrapper)
+    const { width, height } = window.getComputedStyle(this.wrapperRef.current)
     this.setState({
       frameWidth: parseFloat(width.split('px')[0]),
       frameHeight: parseFloat(height.split('px')[0])
@@ -277,9 +282,9 @@ class Carousel extends React.Component {
 
   getSiblingFrames () {
     return {
-      current: this.refs['f' + this.getFrameId()],
-      prev: this.refs['f' + this.getFrameId('prev')],
-      next: this.refs['f' + this.getFrameId('next')]
+      current: this.frameRefs[this.getFrameId()],
+      prev: this.frameRefs[this.getFrameId('prev')],
+      next: this.frameRefs[this.getFrameId('next')]
     }
   }
 
@@ -365,7 +370,7 @@ class Carousel extends React.Component {
   //   console.log('>>> DEBUG-FRAMES: current', this.state.current)
   //   const len = this.state.frames.length
   //   for (let i = 0; i < len; ++i) {
-  //     const ref = this.refs['f' + i]
+  //     const ref = this.frameRefs[i]
   //     console.info(ref.innerText.trim(), ref.style.transform)
   //   }
   // }
@@ -378,7 +383,7 @@ class Carousel extends React.Component {
     return (
       <div style={wrapperStyle}>
         <div
-          ref='wrapper'
+          ref={this.wrapperRef}
           style={objectAssign({overflow: 'hidden'}, wrapperStyle)}
           onTouchStart={this.onTouchStart}
           className={this.props.className}
@@ -386,7 +391,7 @@ class Carousel extends React.Component {
           {
             frames.map((frame, i) => {
               const frameStyle = objectAssign({zIndex: 99 - i}, styles.frame)
-              return <div ref={'f' + i} key={i} style={frameStyle}>{frame}</div>
+              return <div ref={this.setFrameRef} key={i} style={frameStyle}>{frame}</div>
             })
           }
           { this.props.frames && this.props.children }
