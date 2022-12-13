@@ -5,14 +5,14 @@ function Dot (props) {
   return (
     <span style={{
       display: 'inline-block',
-      height: '8px',
-      width: '8px',
-      borderRadius: '4px',
+      height: '12px',
+      width: '12px',
+      borderRadius: '6px',
       backgroundColor: 'white',
       margin: '7px 5px',
       opacity: props.selected ? '1' : '0.3',
       transitionDuration: '300ms'
-    }} />
+    }} onClick={props.onClick}/>
   )
 }
 
@@ -32,7 +32,7 @@ export default function IndicatorDots (props) {
     return (
       <div style={wrapperStyle}>{
         Array.apply(null, Array(props.total)).map((x, i) => {
-          return <Dot key={i} selected={props.index === i} />
+          return <Dot key={i} selected={props.index === i} onClick={() => {props.setFrameHandler(i)}} />
         })
       }</div>
     )

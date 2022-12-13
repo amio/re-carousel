@@ -27,6 +27,7 @@ All attributes are optional.
 - `auto` {Boolean} `true` or `false` (`false` by default) toggle auto sliding.
 - `interval` {Number} (`4000`ms by default) interval for auto sliding.
 - `duration` {Number} (`300`ms by default) duration for animation.
+- `onStartFrameIndex` {Number} (`0` by default) the index of the frame on first render.
 - `onTransitionEnd` {Function({ prev: HTMLElement, current: HTMLElement, next: HTMLElement})} on frames transition end callback.
 - `widgets` {Array of ReactClass} Indicator and switcher could be various,
   so it's not builtin. Here's some example custom widgets
